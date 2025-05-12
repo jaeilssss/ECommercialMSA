@@ -23,6 +23,11 @@ public class Admin {
     private String email;
 
     @Column(nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_id")
+    private Company company;
+
+    @Column(nullable = false)
     private String password;
 
     private String name;
