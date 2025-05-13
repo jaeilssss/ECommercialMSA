@@ -1,5 +1,5 @@
-package com.ecommercial.shopping.adminservice.domain.entity;
-
+package com.ecommercial.shopping.adminservice.admin.domain.entity;
+import com.ecommercial.shopping.adminservice.company.domain.entity.Company;
 import com.ecommercial.shopping.adminservice.global.enums.AdminRoleEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -22,7 +22,6 @@ public class Admin {
     @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id")
     private Company company;

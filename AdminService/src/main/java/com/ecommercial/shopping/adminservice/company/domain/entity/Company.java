@@ -1,4 +1,4 @@
-package com.ecommercial.shopping.adminservice.domain.entity;
+package com.ecommercial.shopping.adminservice.company.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

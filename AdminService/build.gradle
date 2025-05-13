@@ -2,28 +2,11 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.4.4'
     id 'io.spring.dependency-management' version '1.1.7'
-
 }
 
 group = 'com.ecommercial.shopping'
 version = '0.0.1-SNAPSHOT'
 
-def querydslSrcDir = 'src/main/generated'
-def querydslDir = "src/main/generated" // 생성될 Q파일 위치
-
-def generated = "src/main/generated"
-
-sourceSets {
-    main {
-        java {
-            srcDir generated
-        }
-    }
-}
-
-tasks.withType(JavaCompile) {
-    options.annotationProcessorGeneratedSourcesDirectory = file(generated)
-}
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(17)
@@ -43,31 +26,54 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-aop'
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.kafka:spring-kafka'
     compileOnly 'org.projectlombok:lombok'
-    runtimeOnly 'com.mysql:mysql-connector-j'
     annotationProcessor 'org.projectlombok:lombok'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    implementation 'org.hibernate.orm:hibernate-core:6.4.4.Final'
+
+    // QueryDSL dependencies (Spring Boot 3.0 이상)
+    implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
+    annotationProcessor 'com.querydsl:querydsl-apt:5.0.0:jakarta'
+    annotationProcessor "jakarta.annotation:jakarta.annotation-api"
+    annotationProcessor "jakarta.persistence:jakarta.persistence-api"
+
+    // Jakarta Persistence API 3.1.0
+
+    implementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'  // 런타임용
+    compileOnly 'jakarta.persistence:jakarta.persistence-api:3.1.0'     // compileClasspath 강제 고정
+
+    annotationProcessor 'com.querydsl:querydsl-apt:5.0.0:jakarta'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.kafka:spring-kafka-test'
     testImplementation 'org.springframework.security:spring-security-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+def querydslSrcDir = 'src/main/generated'
 
-    // query dsl 버전 명시해야 jakarta사용 (javax X)
-    implementation 'com.querydsl:querydsl-jpa'
-    annotationProcessor 'com.querydsl:querydsl-apt:5.0.0:jakarta'
-    annotationProcessor 'jakarta.persistence:jakarta.persistence-api'
-    annotationProcessor 'jakarta.annotation:jakarta.annotation-api'
-
-    // 추가!
-    implementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'
-    annotationProcessor 'jakarta.persistence:jakarta.persistence-api:3.1.0'
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java', querydslSrcDir]
+        }
+    }
 }
 
+clean {
+    delete file(querydslSrcDir)
+}
 
+tasks.withType(JavaCompile) {
+    options.annotationProcessorGeneratedSourcesDirectory = file(querydslSrcDir)
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
 tasks.named('test') {
     useJUnitPlatform()
 }

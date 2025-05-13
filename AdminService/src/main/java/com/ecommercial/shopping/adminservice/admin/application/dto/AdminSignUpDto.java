@@ -1,6 +1,6 @@
-package com.ecommercial.shopping.adminservice.application.dto;
+package com.ecommercial.shopping.adminservice.admin.application.dto;
 
-import com.ecommercial.shopping.adminservice.domain.entity.Admin;
+import com.ecommercial.shopping.adminservice.admin.domain.entity.Admin;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,4 +1,4 @@
-package com.ecommercial.shopping.adminservice.domain.entity;
+package com.ecommercial.shopping.adminservice.admin.domain.entity;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
@@ -15,7 +15,7 @@ import com.querydsl.core.types.Path;
 @Generated("com.querydsl.codegen.DefaultEmbeddableSerializer")
 public class QAdmin_Address extends BeanPath<Admin.Address> {
 
-    private static final long serialVersionUID = 192632358L;
+    private static final long serialVersionUID = -1859128697L;
 
     public static final QAdmin_Address address = new QAdmin_Address("address");
 

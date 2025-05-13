@@ -1,4 +1,4 @@
-package com.ecommercial.shopping.adminservice.domain.entity;
+package com.ecommercial.shopping.adminservice.admin.domain.entity;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
@@ -16,7 +16,7 @@ import com.querydsl.core.types.dsl.PathInits;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QAdmin extends EntityPathBase<Admin> {
 
-    private static final long serialVersionUID = 9130560L;
+    private static final long serialVersionUID = -97591391L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
@@ -25,6 +25,8 @@ public class QAdmin extends EntityPathBase<Admin> {
     public final QAdmin_Address address;
 
     public final StringPath birthday = createString("birthday");
+
+    public final com.ecommercial.shopping.adminservice.company.domain.entity.QCompany company;
 
     public final StringPath email = createString("email");
 
@@ -57,6 +59,7 @@ public class QAdmin extends EntityPathBase<Admin> {
     public QAdmin(Class<? extends Admin> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.address = inits.isInitialized("address") ? new QAdmin_Address(forProperty("address")) : null;
+        this.company = inits.isInitialized("company") ? new com.ecommercial.shopping.adminservice.company.domain.entity.QCompany(forProperty("company")) : null;
     }
 
 }
