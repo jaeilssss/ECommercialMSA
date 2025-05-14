@@ -1,4 +1,5 @@
 package com.ecommercial.shopping.adminservice.admin.domain.entity;
+import com.ecommercial.shopping.adminservice.admin.domain.vo.Address;
 import com.ecommercial.shopping.adminservice.company.domain.entity.Company;
 import com.ecommercial.shopping.adminservice.global.enums.AdminRoleEnum;
 import jakarta.persistence.*;
@@ -39,12 +40,6 @@ public class Admin {
     @Enumerated(EnumType.STRING)
     private AdminRoleEnum role;
 
-    @Embeddable
-    public static class Address {
-        private String city;
-        private String firstAddress;
-        private String secondAddress;
-        private String zipCode;
-    }
+
 
 }
