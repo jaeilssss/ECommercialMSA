@@ -24,8 +24,12 @@ public class RoutingDataSource extends AbstractRoutingDataSource {
 
     @Override
     protected Object determineCurrentLookupKey() {
-        return TransactionSynchronizationManager.isCurrentTransactionReadOnly()
+        boolean isReadOnly = TransactionSynchronizationManager.isCurrentTransactionReadOnly();
+        System.out.println(">>> [Routing] Transaction readOnly = " + isReadOnly);
+        String lookupKey = isReadOnly
                 ? readOnlyDataSourceCycle.getReadOnlyDataSourceLookupKey()
                 : WRITE;
+        System.out.println(">>> [Routing] Using DataSource = " + lookupKey);
+        return lookupKey;
     }
 }

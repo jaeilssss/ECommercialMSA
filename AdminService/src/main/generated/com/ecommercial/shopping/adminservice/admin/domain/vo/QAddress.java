@@ -1,4 +1,4 @@
-package com.ecommercial.shopping.adminservice.admin.domain.entity;
+package com.ecommercial.shopping.adminservice.admin.domain.vo;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
@@ -10,14 +10,14 @@ import com.querydsl.core.types.Path;
 
 
 /**
- * QAdmin_Address is a Querydsl query type for Address
+ * QAddress is a Querydsl query type for Address
  */
 @Generated("com.querydsl.codegen.DefaultEmbeddableSerializer")
-public class QAdmin_Address extends BeanPath<Admin.Address> {
+public class QAddress extends BeanPath<Address> {
 
-    private static final long serialVersionUID = -1859128697L;
+    private static final long serialVersionUID = -121854180L;
 
-    public static final QAdmin_Address address = new QAdmin_Address("address");
+    public static final QAddress address = new QAddress("address");
 
     public final StringPath city = createString("city");
 
@@ -27,16 +27,16 @@ public class QAdmin_Address extends BeanPath<Admin.Address> {
 
     public final StringPath zipCode = createString("zipCode");
 
-    public QAdmin_Address(String variable) {
-        super(Admin.Address.class, forVariable(variable));
+    public QAddress(String variable) {
+        super(Address.class, forVariable(variable));
     }
 
-    public QAdmin_Address(Path<? extends Admin.Address> path) {
+    public QAddress(Path<? extends Address> path) {
         super(path.getType(), path.getMetadata());
     }
 
-    public QAdmin_Address(PathMetadata metadata) {
-        super(Admin.Address.class, metadata);
+    public QAddress(PathMetadata metadata) {
+        super(Address.class, metadata);
     }
 
 }

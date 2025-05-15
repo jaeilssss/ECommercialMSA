@@ -16,12 +16,13 @@ import org.springframework.web.bind.annotation.*;
 public class CompanyController {
 
     private final CompanyService companyService;
-    private final CompanyDtoMapper companyDtoMapper;
 
-    @GetMapping("/register")
+    @PostMapping("/register")
     public ResponseEntity<BaseResponse<String>> registerCompany(@RequestBody RegisterCompanyBodyModel registerCompanyBodyModel) {
-
-        companyService.registerCompany(companyDtoMapper.of(registerCompanyBodyModel));
+        System.out.println(registerCompanyBodyModel.getBusinessNumber());
+        companyService.registerCompany(registerCompanyBodyModel.toDto());
         return ResponseEntity.ok(new BaseResponse<String>("OK","등록이 완료 됐습니다."));
     }
+
+
 }

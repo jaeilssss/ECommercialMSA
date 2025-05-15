@@ -22,7 +22,7 @@ public class QAdmin extends EntityPathBase<Admin> {
 
     public static final QAdmin admin = new QAdmin("admin");
 
-    public final QAdmin_Address address;
+    public final com.ecommercial.shopping.adminservice.admin.domain.vo.QAddress address;
 
     public final StringPath birthday = createString("birthday");
 
@@ -58,8 +58,8 @@ public class QAdmin extends EntityPathBase<Admin> {
 
     public QAdmin(Class<? extends Admin> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.address = inits.isInitialized("address") ? new QAdmin_Address(forProperty("address")) : null;
-        this.company = inits.isInitialized("company") ? new com.ecommercial.shopping.adminservice.company.domain.entity.QCompany(forProperty("company")) : null;
+        this.address = inits.isInitialized("address") ? new com.ecommercial.shopping.adminservice.admin.domain.vo.QAddress(forProperty("address")) : null;
+        this.company = inits.isInitialized("company") ? new com.ecommercial.shopping.adminservice.company.domain.entity.QCompany(forProperty("company"), inits.get("company")) : null;
     }
 
 }

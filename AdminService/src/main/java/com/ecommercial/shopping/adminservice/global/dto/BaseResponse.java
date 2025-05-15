@@ -2,9 +2,11 @@ package com.ecommercial.shopping.adminservice.global.dto;
 
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 @AllArgsConstructor
 public class BaseResponse<T> {
-    private String code;
-    private T data;
+    public String code;
+    public T data;
 }
