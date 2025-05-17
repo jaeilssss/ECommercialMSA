@@ -1,7 +1,7 @@
 package com.ecommercial.shopping.adminservice.company.application;
 
+import com.ecommercial.shopping.adminservice.company.application.dto.CompanyListCommand;
 import com.ecommercial.shopping.adminservice.company.application.dto.RegisterCompanyCommand;
-import com.ecommercial.shopping.adminservice.company.domain.entity.Company;
 import com.ecommercial.shopping.adminservice.company.domain.repository.CompanyQueryRepository;
 import com.ecommercial.shopping.adminservice.company.domain.repository.CompanyRepository;
 import com.ecommercial.shopping.adminservice.global.error.CompanyError;
@@ -9,6 +9,8 @@ import com.ecommercial.shopping.adminservice.global.exception.MyException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -23,6 +25,26 @@ public class CompanyServiceImpl implements CompanyService {
     public void registerCompany(RegisterCompanyCommand.Req request) {
         isRegisteredCompany(request.getBusinessNumber());
         companyRepository.save(request.toEntity());
+    }
+
+    @Override
+    public CompanyListCommand.Res getCompanyList(CompanyListCommand.Req request) {
+        Long maxSize = companyQueryRepository.findCompanySize(request.getSortKey());
+        List<CompanyListCommand.CompanyData> companyData = companyQueryRepository
+                .findCompaniesBySortKey(
+                        request.getSortKey(),
+                        (request.getPage()-1)*request.getLimit(),
+                        request.getLimit()
+                )
+                .stream()
+                .map(CompanyListCommand.CompanyData::toCompanyData)
+                .toList();
+
+        return CompanyListCommand.Res.builder()
+                .page(request.getPage())
+                .limit(maxSize)
+                .result(companyData)
+                .build();
     }
 
     @Transactional(readOnly = true)
