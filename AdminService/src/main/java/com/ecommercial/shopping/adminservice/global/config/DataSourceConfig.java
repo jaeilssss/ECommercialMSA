@@ -27,9 +27,6 @@ public class DataSourceConfig {
 
         Map<Object, Object> dataSourceMap = new HashMap<>();
         dataSourceMap.put(write.getUrl(), writeDataSource);
-        System.out.println("0--0=-------");
-        System.out.println(write.getUrl());
-
         List<DataSourceProperties.Read> reads = dataSourceProperties.getReads();
 
         for (DataSourceProperties.Read read : reads) {

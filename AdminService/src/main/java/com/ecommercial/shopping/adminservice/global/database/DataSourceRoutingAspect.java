@@ -11,17 +11,18 @@ import org.springframework.transaction.annotation.Transactional;
 //@Component
 public class DataSourceRoutingAspect {
 //
-//    @Before("@annotation(tx)")
-//    public void setDataSourceType(Transactional tx) {
-//        if (tx.readOnly()) {
+//    @Before("@annotation(transactional)")
+//    public void setDataSourceType(Transactional transactional) {
+//        System.out.println("aop 실행");
+//        if (transactional.readOnly()) {
 //            DbContextHolder.setDbType(DbType.READ);
 //        } else {
-//            DbContextHolder.setDbType(DbType.READ);
+//            DbContextHolder.setDbType(DbType.WRITE);
 //        }
 //    }
 //
-//    @After("@annotation(tx)")
-//    public void clearDataSourceType(Transactional tx) {
+//    @After("@annotation(transactional)")
+//    public void clearDataSourceType(Transactional transactional) {
 //        DbContextHolder.clearDbType();
 //    }
 }
