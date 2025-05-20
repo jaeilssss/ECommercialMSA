@@ -52,4 +52,13 @@ public class CompanyQueryRepositoryImpl implements CompanyQueryRepository {
                 .fetchOne();
     }
 
+    @Override
+    public Optional<Company> findById(Long id) {
+        return Optional.ofNullable(
+                jpaQueryFactory.selectFrom(qCompany)
+                        .where(qCompany.id.eq(id))
+                        .fetchOne()
+        );
+    }
+
 }

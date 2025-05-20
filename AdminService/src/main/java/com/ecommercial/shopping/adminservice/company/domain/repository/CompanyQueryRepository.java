@@ -9,5 +9,6 @@ public interface CompanyQueryRepository {
     Optional<Company> findByBusinessNumber(String businessNumber);
     List<Company> findCompaniesBySortKey(String requestSortkey, int offset, int limit);
     Long findCompanySize(String requestSortKey);
+    Optional<Company> findById(Long id);
 
 }

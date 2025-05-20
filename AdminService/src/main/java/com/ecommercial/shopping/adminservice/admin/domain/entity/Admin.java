@@ -3,10 +3,7 @@ import com.ecommercial.shopping.adminservice.admin.domain.vo.Address;
 import com.ecommercial.shopping.adminservice.company.domain.entity.Company;
 import com.ecommercial.shopping.adminservice.global.enums.AdminRoleEnum;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,6 +11,7 @@ import lombok.Setter;
 @Table(name = "admin")
 @Getter
 @Setter
+@Builder
 public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
