@@ -24,6 +24,7 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public void registerCompany(RegisterCompanyCommand.Req request) {
         isRegisteredCompany(request.getBusinessNumber());
+        System.out.println(request.getAddress().getFirstAddress());
         companyRepository.save(request.toEntity());
     }
 

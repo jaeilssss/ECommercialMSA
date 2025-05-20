@@ -9,6 +9,7 @@ public class RegisterCompanyCommand {
     @Getter
     @Setter
     @Builder
+    @ToString
     @AllArgsConstructor
     @NoArgsConstructor
     public static class Req {
