@@ -26,7 +26,7 @@ public class AdminQueryRepositoryImpl implements AdminQueryRepository {
         return Optional.ofNullable(
                 jpaQueryFactory.selectFrom(qAdmin)
                         .where(qAdmin.email.eq(email))
-                        .join(qCompany).fetchJoin()
+                        .leftJoin(qAdmin.company, qCompany).fetchJoin()
                         .fetchOne()
         );
     }
@@ -36,8 +36,10 @@ public class AdminQueryRepositoryImpl implements AdminQueryRepository {
         return Optional.ofNullable(
                 jpaQueryFactory.selectFrom(qAdmin)
                         .where(qAdmin.id.eq(id))
-                        .join(qCompany).fetchJoin()
+                        .join(qAdmin.company, qCompany).fetchJoin()
                         .fetchOne()
         );
     }
+
+
 }
