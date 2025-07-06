@@ -5,4 +5,5 @@ import java.util.Optional
 
 interface OrderQueryRepository {
     fun findById(orderId: Long): Optional<Order>
+    fun findOrderListByUserId(userId: Long): List<Order>
 }

@@ -22,4 +22,11 @@ class OrderQueryRepositoryImpl(entityManager: EntityManager): OrderQueryReposito
                 .fetchOne()
         )
     }
+
+    override fun findOrderListByUserId(userId: Long): List<Order> {
+        return jpaQueryRepository.selectFrom(qOrder)
+            .where(qOrder.userId.eq(userId))
+            .leftJoin(qOrder.orderItems, qOrderItem)
+            .fetch()
+    }
 }

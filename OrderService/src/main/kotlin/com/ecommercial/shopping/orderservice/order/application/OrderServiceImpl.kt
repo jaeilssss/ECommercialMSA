@@ -4,6 +4,7 @@ import com.ecommercial.shopping.orderservice.global.dto.BaseResponse
 import com.ecommercial.shopping.orderservice.global.error.OrderErrorEnum
 import com.ecommercial.shopping.orderservice.global.error.ProductErrorEnum
 import com.ecommercial.shopping.orderservice.global.exception.MyException
+import com.ecommercial.shopping.orderservice.order.application.dto.OrderInfoResponse
 import com.ecommercial.shopping.orderservice.order.application.dto.OrderRequest
 import com.ecommercial.shopping.orderservice.order.application.dto.ProductCacheData
 import com.ecommercial.shopping.orderservice.order.application.redis.OrderRedisService
@@ -69,6 +70,13 @@ class OrderServiceImpl(
                     OrderErrorEnum.NOT_FOUND_ORDER_ID.message
                 )
             }
+    }
+
+    override fun getOrderList(userId: Long): List<OrderInfoResponse> {
+        return orderQueryRepository.findOrderListByUserId(userId)
+            .stream()
+            .map { OrderInfoResponse.create(it)}
+            .toList()
     }
 
 
