@@ -1,4 +1,4 @@
-package com.ecommercial.shopping.productservice.product.infrastructure;
+package com.ecommercial.shopping.productservice.product.infrastructure.repository;
 
 import com.ecommercial.shopping.productservice.product.domain.Product;
 import com.ecommercial.shopping.productservice.product.domain.QProduct;

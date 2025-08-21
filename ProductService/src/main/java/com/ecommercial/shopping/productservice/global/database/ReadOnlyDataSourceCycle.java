@@ -1,4 +1,4 @@
-package com.ecommercial.shopping.adminservice.global.database;
+package com.ecommercial.shopping.productservice.global.database;
 
 import lombok.Setter;
 

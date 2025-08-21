@@ -1,6 +1,6 @@
-package com.ecommercial.shopping.adminservice.global.config;
+package com.ecommercial.shopping.productservice.global.config;
 
-import com.ecommercial.shopping.adminservice.global.database.RoutingDataSource;
+import com.ecommercial.shopping.productservice.global.database.RoutingDataSource;
 import com.zaxxer.hikari.HikariDataSource;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -11,7 +11,6 @@ import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 @Configuration
 @RequiredArgsConstructor

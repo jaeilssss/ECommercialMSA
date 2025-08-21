@@ -1,5 +1,8 @@
-package com.ecommercial.shopping.adminservice.global.config;
+package com.ecommercial.shopping.productservice.global.config;
 
+import com.ecommercial.shopping.productservice.global.filter.JwtAuthenticationFilter;
+import com.ecommercial.shopping.productservice.global.jwt.JwtValidation;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -9,10 +12,14 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
+
+    private final JwtValidation jwtValidation;
 
     @Bean
     public PasswordEncoder PasswordEncoder() {
@@ -27,8 +34,12 @@ public class SecurityConfig {
                 .rememberMe(AbstractHttpConfigurer::disable)
                 .formLogin(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> {
+                    request.requestMatchers("/admin/**").hasRole("ADMIN");
+                    request.requestMatchers("/user/**").hasRole("USER");
                     request.anyRequest().permitAll();
                 })
+                .addFilterBefore(new JwtAuthenticationFilter(jwtValidation), UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
+
 }

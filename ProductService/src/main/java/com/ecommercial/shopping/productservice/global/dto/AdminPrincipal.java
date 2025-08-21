@@ -1,6 +1,6 @@
-package com.ecommercial.shopping.adminservice.global.dto;
+package com.ecommercial.shopping.productservice.global.dto;
 
-import com.ecommercial.shopping.adminservice.global.enums.AdminRoleEnum;
+import com.ecommercial.shopping.productservice.global.enums.AdminRole;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -9,6 +9,6 @@ import lombok.Getter;
 public class AdminPrincipal {
     private Long adminUserId;
     private String email;
-    private AdminRoleEnum role;
+    private AdminRole role;
     private Long companyId;
 }

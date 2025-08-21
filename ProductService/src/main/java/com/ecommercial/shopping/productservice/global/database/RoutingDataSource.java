@@ -1,7 +1,8 @@
-package com.ecommercial.shopping.adminservice.global.database;
+package com.ecommercial.shopping.productservice.global.database;
 
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
+
 import java.util.List;
 import java.util.Map;
 

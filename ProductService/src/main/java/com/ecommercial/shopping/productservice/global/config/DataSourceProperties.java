@@ -1,4 +1,4 @@
-package com.ecommercial.shopping.adminservice.global.config;
+package com.ecommercial.shopping.productservice.global.config;
 
 import lombok.Getter;
 import lombok.Setter;
