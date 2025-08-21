@@ -1,4 +1,4 @@
-package com.market.studyboardkt.setting.common.exception.enum
+package com.ecommercial.shopping.userservice.global.exception
 
 import org.springframework.http.HttpStatus
 

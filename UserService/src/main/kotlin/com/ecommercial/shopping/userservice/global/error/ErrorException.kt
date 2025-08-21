@@ -1,4 +1,10 @@
 package com.ecommercial.shopping.userservice.global.error
 
-class ErrorException {
+import org.springframework.http.HttpStatus
+
+class ErrorException(
+    val httpStatus: HttpStatus,
+    val errorMessage : String
+) : RuntimeException(){
+
 }
