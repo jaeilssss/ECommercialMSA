@@ -1,8 +1,8 @@
-package com.ecommercial.shopping.productservice.global.controller;
+package com.ecommercial.shopping.inventoryservice.global.controller;
 
 
-import com.ecommercial.shopping.productservice.global.dto.BaseResponse;
-import com.ecommercial.shopping.productservice.global.exception.MyException;
+import com.ecommercial.shopping.inventoryservice.global.dto.BaseResponse;
+import com.ecommercial.shopping.inventoryservice.global.exception.MyException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

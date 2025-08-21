@@ -1,4 +1,4 @@
-package com.ecommercial.shopping.productservice.global.database;
+package com.ecommercial.shopping.inventoryservice.global.database;
 
 //@Aspect
 //@Component

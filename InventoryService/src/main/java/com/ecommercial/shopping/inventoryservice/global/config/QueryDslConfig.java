@@ -1,4 +1,4 @@
-package com.ecommercial.shopping.productservice.global.config;
+package com.ecommercial.shopping.inventoryservice.global.config;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;

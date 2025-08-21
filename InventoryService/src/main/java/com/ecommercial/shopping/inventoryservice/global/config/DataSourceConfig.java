@@ -1,6 +1,6 @@
-package com.ecommercial.shopping.productservice.global.config;
+package com.ecommercial.shopping.inventoryservice.global.config;
 
-import com.ecommercial.shopping.productservice.global.database.RoutingDataSource;
+import com.ecommercial.shopping.inventoryservice.global.database.RoutingDataSource;
 import com.zaxxer.hikari.HikariDataSource;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

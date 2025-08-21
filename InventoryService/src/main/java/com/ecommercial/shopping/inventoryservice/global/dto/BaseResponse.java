@@ -1,4 +1,4 @@
-package com.ecommercial.shopping.productservice.global.dto;
+package com.ecommercial.shopping.inventoryservice.global.dto;
 
 
 import lombok.AllArgsConstructor;

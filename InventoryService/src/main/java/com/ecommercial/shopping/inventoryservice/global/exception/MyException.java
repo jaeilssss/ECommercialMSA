@@ -1,4 +1,4 @@
-package com.ecommercial.shopping.productservice.global.exception;
+package com.ecommercial.shopping.inventoryservice.global.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

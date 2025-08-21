@@ -1,4 +1,4 @@
-package com.ecommercial.shopping.productservice.global.enums;
+package com.ecommercial.shopping.inventoryservice.global.enums;
 
 public enum DbType {
     READ,
