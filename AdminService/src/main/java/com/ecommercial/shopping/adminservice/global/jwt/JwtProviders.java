@@ -1,5 +1,6 @@
 package com.ecommercial.shopping.adminservice.global.jwt;
 
+import com.ecommercial.shopping.adminservice.admin.domain.entity.Admin;
 import com.ecommercial.shopping.adminservice.global.error.JwtError;
 import com.ecommercial.shopping.adminservice.global.exception.MyException;
 import com.ecommercial.shopping.adminservice.global.jwt.dto.JwtTokenResponse;
@@ -44,10 +45,10 @@ public class JwtProviders implements InitializingBean {
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 
-    public JwtTokenResponse createToken(String email, Long adminUserId) {
+    public JwtTokenResponse createToken(Admin admin) {
         Claims claims = Jwts.claims();
 
-        claims.put(headers, email);
+        claims.put(headers, admin.getEmail());
         Long now = new Date().getTime();
         Date access_validity = new Date(now + this.expiration);
         Date refresh_validity = new Date(now + this.refreshExpiration);
@@ -56,14 +57,17 @@ public class JwtProviders implements InitializingBean {
                 .setHeaderParam(Header.TYPE, Header.JWT_TYPE)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(access_validity)
-                .setSubject(email)
-                .claim("adminUserId", adminUserId)
+                .setSubject(admin.getEmail())
+                .claim("userId", admin.getId())
+                .claim("account-type","Admin")
+                .claim("role", admin.getRole())
+                .claim("companyId", admin.getCompany().getId())
                 .signWith(SignatureAlgorithm.HS256, getKey(secretKey))
                 .compact();
 
         String refreshToken = Jwts.builder()
                 .setExpiration(refresh_validity)
-                .claim("adminUserId",adminUserId)
+                .claim("userId",admin.getId())
                 .signWith(SignatureAlgorithm.HS256, getKey(secretKey))
                 .compact();
 

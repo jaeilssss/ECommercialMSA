@@ -41,7 +41,7 @@ public class AdminUserServiceImpl implements AdminUserService{
     public JwtTokenResponse login(AdminUserLoginCommand.Req request) {
         Admin admin = getAdminUser(request.getEmail());
         isCheckPassword(request.getPassword(), admin.getPassword());
-        return jwtProviders.createToken(admin.getEmail(), admin.getId());
+        return jwtProviders.createToken(admin);
     }
 
     private void isCheckPassword(String rawPassword, String encodedPassword) {
