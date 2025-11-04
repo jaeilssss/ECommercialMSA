@@ -79,7 +79,7 @@ public class JwtValidation implements InitializingBean {
         return new UsernamePasswordAuthenticationToken(
                 adminPrincipal,
                 "",
-                List.of(new SimpleGrantedAuthority("ROLE_ADMIN")
+                List.of(new SimpleGrantedAuthority(role.getRoleValue())
                 )
         );
     }
@@ -109,4 +109,8 @@ public class JwtValidation implements InitializingBean {
         }
     }
 
+    private AdminRole getRole(String token) {
+        Claims claims = parseClaims(token);
+        return AdminRole.fromRole(claims.get("role").toString());
+    }
 }

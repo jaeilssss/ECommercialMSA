@@ -3,6 +3,7 @@ package com.ecommercial.shopping.productservice.product.presentation;
 import com.ecommercial.shopping.model.NewInventoryUpdateMessage;
 import com.ecommercial.shopping.model.UpdateProductCacheMessage;
 import com.ecommercial.shopping.productservice.global.dto.BaseResponse;
+import com.ecommercial.shopping.productservice.global.jwt.JwtValidation;
 import com.ecommercial.shopping.productservice.product.application.dto.ProductInfoResponse;
 import com.ecommercial.shopping.productservice.product.application.dto.RegisterProductCommand;
 import com.ecommercial.shopping.productservice.product.application.service.ProductService;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 public class ProductController {
 
     private final ProductService productService;
+    private final JwtValidation jwtValidation;
     private final KafkaTemplate<String, Object> kafkaTemplate;
 
     @PostMapping("/register")
