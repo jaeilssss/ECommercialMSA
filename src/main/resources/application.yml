@@ -1,0 +1,58 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    replication:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: root
+      write:
+        name: write
+        url: jdbc:mysql://localhost:3307/test_db?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true
+      reads:
+        - name: read1
+          url: jdbc:mysql://localhost:3307/test_db?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true
+  kafka:
+    bootstrap-servers: localhost:9092
+
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: true  # 타입 헤더 추가해서 수신자가 어떤 객체인지 알 수 있게 함
+
+    consumer:
+      group-id: your-group-id
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+      properties:
+        spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
+        spring.json.trusted.packages: "*"
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+
+  data:
+    redis:
+      port: 6379
+      host: localhost
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
+
+jwt :
+  headers: Authorization
+  secretKey: a2FyaW10b2thcmltdG9rYXJpbXRva2FyaW10b2thcmltdG9rYXJpbXRva2FyaW10b2thcmltdG9rYXJpbXRva2FyaW10b2thcmltdG9rYXJpbXRva2FyaW10b2thcmltdG9rYXJpbXRva2FyaW10b2thcmltdG9rYXJpbXRva2FyaW10b2thcmltdG9rYXJpbQ==
+  expiration: 9600000
+
+
+
