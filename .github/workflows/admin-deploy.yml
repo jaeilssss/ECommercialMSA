@@ -1,10 +1,11 @@
-name: Deploy to ECR
+name: Deploy AdminService to ECR
 
 on:
   push:
     branches: [ "main" ]   # main 브랜치 push 시 실행
     paths:
-      - "AdminService/**"
+      - "AdminService/**"   # AdminService 코드 변경 시에만 실행
+
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
@@ -20,7 +21,9 @@ jobs:
           distribution: 'temurin'
 
       - name: Build Spring Boot Jar
-        run: ./gradlew build -x test
+        run: |
+          cd AdminService
+          ./gradlew build -x test
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -36,8 +39,8 @@ jobs:
       - name: Build & Push Docker image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPO: ${{ secrets.ECR_REPOSITORY }}
+          ECR_REPO: ${{ secrets.ECR_REPOSITORY }}   # ex: admin-service
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPO:$IMAGE_TAG .
+          docker build -t $ECR_REGISTRY/$ECR_REPO:$IMAGE_TAG ./AdminService
           docker push $ECR_REGISTRY/$ECR_REPO:$IMAGE_TAG
