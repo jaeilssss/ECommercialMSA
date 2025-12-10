@@ -6,7 +6,7 @@ spring:
       password: root
       write:
         name: write
-        url: jdbc:mysql://localhost:33017/test_db?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true
+        url: jdbc:mysql://localhost:3307/test_db?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true
       reads:
         - name: read1
           url: jdbc:mysql://localhost:3307/test_db?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true
