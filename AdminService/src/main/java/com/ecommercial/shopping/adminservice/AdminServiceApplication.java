@@ -10,7 +10,7 @@ public class AdminServiceApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(AdminServiceApplication.class, args);
-        System.out.println("test123456");
+        System.out.println("test1233456");
     }
 
 }
