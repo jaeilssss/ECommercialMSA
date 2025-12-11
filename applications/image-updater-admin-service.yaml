@@ -1,0 +1,17 @@
+apiVersion: argocd-image-updater.argoproj.io/v1alpha1
+kind: ImageUpdater
+metadata:
+  name: admin-service
+  namespace: argocd
+spec:
+  interval: 2m
+  images:
+    - name: admin-service
+      image: 005734394777.dkr.ecr.ap-northeast-2.amazonaws.com/adminservice
+      pullSecret:
+        name: ecr-credentials
+      updatePolicy:
+        strategy: latest
+      target:
+        kind: Application
+        name: admin-service

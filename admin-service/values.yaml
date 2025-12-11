@@ -9,7 +9,7 @@ replicaCount: 1
 image:
   repository: 005734394777.dkr.ecr.ap-northeast-2.amazonaws.com/adminservice
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "latest"
 
 # This is for the secrets for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 imagePullSecrets: []
