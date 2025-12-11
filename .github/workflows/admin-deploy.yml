@@ -1,91 +1,46 @@
-name: Deploy Service  # 워크플로우 이름
+name: Deploy AdminService to ECR
 
 on:
   push:
-    branches:
-      - main                # main 브랜치에 push될 때 실행
+    branches: [ "main" ]   # main 브랜치 push 시 실행
     paths:
-      - "admin-service/**"  # admin-service 폴더에 변경이 있을 때만 실행
-      - "helm/admin-service/**"  # 헬름 차트 변경 시에도 실행
+      - "AdminService/**"   # AdminService 코드 변경 시에만 실행
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest   # 실행 환경(OS)
+  build-and-push:
+    runs-on: ubuntu-latest
 
     steps:
-      # -----------------------
-      # 1. GitHub Repo Checkout
-      # -----------------------
-      - name: Checkout
-        uses: actions/checkout@v3
-        # → GitHub Actions 가 레포지토리 전체를 다운로드해서 현재 머신에 복사함
+      - name: Checkout source
+        uses: actions/checkout@v4
 
-      # -----------------------
-      # 2. AWS Credentials 설정
-      # -----------------------
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v2
+      - name: Set up JDK
+        uses: actions/setup-java@v4
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}     # GitHub Secrets 사용
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Build Spring Boot Jar
+        run: |
+          cd AdminService
+          ./gradlew build -x test
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
-        # → GitHub Actions 머신이 AWS CLI 명령을 실행할 수 있게 준비하는 단계
+          aws-region: ap-northeast-2   # 서울 리전
 
-      # -----------------------
-      # 3. Amazon ECR 로그인
-      # -----------------------
       - name: Login to ECR
+        id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
-        # → docker push를 AWS ECR에 할 수 있도록 도커 로그인 처리
 
-      # -----------------------
-      # 4. Docker Build & Push
-      # -----------------------
-      - name: Build, Tag, and Push image to ECR
+      - name: Build & Push Docker image
         env:
-          ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}    # ex) 123456789012.dkr.ecr.ap-northeast-2.amazonaws.com
-          ECR_REPOSITORY: admin-service                # ECR repo 이름
-          IMAGE_TAG: ${{ github.sha }}                 # Git Commit SHA (고유 버전)
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPO: ${{ secrets.ECR_REPOSITORY_ADMIN_SERVICE }}
+          IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./admin-service
-          # → admin-service 폴더를 기반으로 Docker 이미지 빌드
-          
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          # → ECR에 push
-
-      # -----------------------
-      # 5. kubeconfig 세팅 (EKS 연결)
-      # -----------------------
-      - name: Update kubeconfig
-        run: |
-          aws eks update-kubeconfig \
-            --name ${{ secrets.EKS_CLUSTER_NAME }} \
-            --region ${{ secrets.AWS_REGION }}
-        # → GitHub Actions 머신이 kubectl, helm 명령을 EKS 클러스터에 보내도록 설정
-
-      # -----------------------
-      # 6. Helm 설치
-      # -----------------------
-      - name: Install Helm
-        uses: azure/setup-helm@v3
-        # → helm 명령을 사용하기 위해 Helm CLI 설치
-
-      # -----------------------
-      # 7. Helm Upgrade / Install
-      # -----------------------
-      - name: Helm Deploy
-        run: |
-          helm upgrade admin-service ./helm/admin-service \
-            --install \                   # 릴리스가 없으면 자동 설치
-            --namespace production \      # 배포 네임스페이스
-            --set image.repository=${{ secrets.ECR_REGISTRY }}/admin-service \
-            --set image.tag=${{ github.sha }}
-        # → 헬름 차트에 이미지 repository/tag 값을 주입하며 업데이트
-
-      # -----------------------
-      # 8. 롤아웃 상태 체크 (선택)
-      # -----------------------
-      - name: Check rollout status
-        run: |
-          kubectl rollout status deployment/admin-service -n production
-        # → deployment가 정상적으로 롤링 업데이트 완료되었는지 확인
+          docker build -t $ECR_REGISTRY/$ECR_REPO:$IMAGE_TAG ./AdminService
+          docker push $ECR_REGISTRY/$ECR_REPO:$IMAGE_TAG
