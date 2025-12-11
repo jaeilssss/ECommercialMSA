@@ -1,1 +1,0 @@
-# ecommercial-msa-kubernetes
