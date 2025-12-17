@@ -11,4 +11,5 @@ public interface AdminUserService {
     void logout(String token);
     JwtTokenResponse login(AdminUserLoginCommand.Req request);
 
+    Admin
 }

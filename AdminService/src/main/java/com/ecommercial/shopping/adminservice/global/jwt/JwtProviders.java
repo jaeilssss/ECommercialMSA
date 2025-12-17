@@ -1,5 +1,6 @@
 package com.ecommercial.shopping.adminservice.global.jwt;
 
+import com.ecommercial.shopping.adminservice.admin.application.AdminUserService;
 import com.ecommercial.shopping.adminservice.admin.domain.entity.Admin;
 import com.ecommercial.shopping.adminservice.global.error.JwtError;
 import com.ecommercial.shopping.adminservice.global.exception.MyException;
@@ -14,12 +15,19 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import javax.crypto.SecretKey;
 import java.security.Key;
 import java.security.SignatureException;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Date;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Component
@@ -43,10 +51,27 @@ public class JwtProviders implements InitializingBean {
     @Value("${redis.blacklist_token}")
     private String blacklistPrefix;
 
+    private AdminUserService adminUserService;
+
     @Override
     public void afterPropertiesSet() throws Exception {
         byte[] keyBytes = Decoders.BASE64.decode(secretKey.replace(" ",""));
         this.key = Keys.hmacShaKeyFor(keyBytes);
+    }
+
+    public Authentication getAuthentication(String accessToken) {
+        Claims claims = parseClaims(accessToken);
+
+        if(claims.get("userId") == null) {
+            throw new RuntimeException("권한 정보가 없는 토큰 입니다.");
+        }
+        Collection<? extends GrantedAuthority> authorities =
+                Arrays.stream(claims.get("userId").toString().split(","))
+                        .map(SimpleGrantedAuthority::new)
+                        .collect(Collectors.toList());
+
+        // UserDetails principal = new
+        return new UsernamePasswordAuthenticationToken(claims.get("userId", Long.class), "", authorities);
     }
 
     public JwtTokenResponse createToken(Admin admin) {
