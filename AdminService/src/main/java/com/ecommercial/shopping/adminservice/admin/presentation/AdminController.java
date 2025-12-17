@@ -4,9 +4,12 @@ import com.ecommercial.shopping.adminservice.admin.application.AdminUserService;
 import com.ecommercial.shopping.adminservice.admin.presentation.dto.AdminLoginBody;
 import com.ecommercial.shopping.adminservice.admin.presentation.dto.AdminSignUpBody;
 import com.ecommercial.shopping.adminservice.global.dto.BaseResponse;
+import com.ecommercial.shopping.adminservice.global.error.AdminError;
+import com.ecommercial.shopping.adminservice.global.exception.MyException;
 import com.ecommercial.shopping.adminservice.global.jwt.JwtProviders;
 import com.ecommercial.shopping.adminservice.global.jwt.dto.JwtTokenResponse;
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +40,12 @@ public class AdminController {
         return ResponseEntity.ok(new BaseResponse<>("OK", jwtTokenResponse));
     }
 
+    @PostMapping("/logout")
+    public ResponseEntity<BaseResponse<String>> logout(@RequestHeader("Authorization") String authorization) {
+        String accessToken = extractToken(authorization);
+        adminUserService.logout(accessToken);
+        return ResponseEntity.ok(new BaseResponse<>("OK", "로그아웃이 완료 됐습니다."));
+    }
 
     private Cookie createCookieToInsertRefreshToken(String refreshToken) {
         Cookie cookie = new Cookie("refreshToken", refreshToken);
@@ -45,5 +54,15 @@ public class AdminController {
         cookie.setPath("/");
         cookie.setMaxAge(Integer.parseInt(String.valueOf(jwtProviders.getRefreshExpiration())));
         return cookie;
+    }
+
+    private String extractToken(String authorization) {
+        if (authorization == null || !authorization.startsWith("Bearer ")) {
+            throw new MyException(
+                    AdminError.INVALID_TOKEN.getCode(),
+                    AdminError.INVALID_TOKEN.getMessage()
+            );
+        }
+        return authorization.substring(7);
     }
 }

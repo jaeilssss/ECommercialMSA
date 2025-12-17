@@ -13,9 +13,15 @@ import com.ecommercial.shopping.adminservice.global.exception.MyException;
 import com.ecommercial.shopping.adminservice.global.jwt.JwtProviders;
 import com.ecommercial.shopping.adminservice.global.jwt.dto.JwtTokenResponse;
 import lombok.AllArgsConstructor;
+import org.apache.kafka.common.protocol.types.Field;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 @AllArgsConstructor
 @Service
@@ -26,15 +32,22 @@ public class AdminUserServiceImpl implements AdminUserService{
     private final CompanyQueryRepository companyQueryRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtProviders jwtProviders;
+    private final BlackListService blackListService;
+
     @Transactional
     @Override
     public void signUp(AdminSignUpCommend.Req request) {
         isSignUpUser(request.getEmail());
-
         adminRepository.save(request.toEntity(
                 getCompanyByCompanyId(request.getCompanyId()),
                 passwordEncoder.encode(request.getPassword())
         ));
+    }
+
+    @Override
+    public void logout(String token) {
+        long remainTime = jwtProviders.getRemainExpirationTime(token);
+        blackListService.save(token, remainTime);
     }
 
     @Override
@@ -80,6 +93,11 @@ public class AdminUserServiceImpl implements AdminUserService{
                                 CompanyError.NOT_FOUND_COMPANY_BY_ID.getMessage()
                         )
                 );
+    }
+
+    public long getRemainExpirationTime(String token) {
+        Date expiration = jwtProviders.getTokenExpiration(token);
+        return expiration.getTime() - System.currentTimeMillis();
     }
 
 }

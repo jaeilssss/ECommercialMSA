@@ -7,6 +7,7 @@ import com.ecommercial.shopping.adminservice.global.jwt.dto.JwtTokenResponse;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -38,6 +39,9 @@ public class JwtProviders implements InitializingBean {
     public Long refreshExpiration;
 
     private Key key;
+
+    @Value("${redis.blacklist_token}")
+    private String blacklistPrefix;
 
     @Override
     public void afterPropertiesSet() throws Exception {
@@ -113,5 +117,35 @@ public class JwtProviders implements InitializingBean {
                 );
             }
         }
+    }
+    public long getRemainExpirationTime(String token) {
+        Date expiration = getTokenExpiration(token);
+        return expiration.getTime() - System.currentTimeMillis();
+    }
+    
+    public Date getTokenExpiration(String token) {
+        return parseClaims(token).getExpiration();
+    }
+
+    private Claims parseClaims(String token) {
+        return Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+    }
+
+    public String makeBlacklistKey(String token) {
+        return blacklistPrefix + token;
+    }
+
+    public String resolveToken(HttpServletRequest request) {
+        String bearerToken = request.getHeader(headers);
+
+        if (bearerToken == null || !bearerToken.startsWith("Bearer ")) {
+            return null;
+        }
+
+        return bearerToken.substring("Bearer ".length());
     }
 }
