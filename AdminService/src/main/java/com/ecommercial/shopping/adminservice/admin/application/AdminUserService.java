@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 public interface AdminUserService {
     void signUp(AdminSignUpCommend.Req request);
+
+    void logout(String token);
     JwtTokenResponse login(AdminUserLoginCommand.Req request);
 
 }
