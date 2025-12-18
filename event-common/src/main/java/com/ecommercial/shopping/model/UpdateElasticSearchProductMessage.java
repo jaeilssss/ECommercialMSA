@@ -12,4 +12,5 @@ public class UpdateElasticSearchProductMessage {
     private String productName;
     private String companyName;
     private String categoryName;
+    private int price;
 }

@@ -5,149 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d8a9c43-bb75-48ad-815d-ea1735153bb0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../AdminService/src/main/java/com/ecommercial/shopping/adminservice/global/dto/AdminPrincipal.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InventoryService/src/main/java/com/ecommercial/shopping/inventoryservice/global/config/DataSourceConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InventoryService/src/main/java/com/ecommercial/shopping/inventoryservice/global/config/DataSourceProperties.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InventoryService/src/main/java/com/ecommercial/shopping/inventoryservice/global/config/JpaConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InventoryService/src/main/java/com/ecommercial/shopping/inventoryservice/global/config/KafkaConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InventoryService/src/main/java/com/ecommercial/shopping/inventoryservice/global/config/QueryDslConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InventoryService/src/main/java/com/ecommercial/shopping/inventoryservice/global/config/RedissonConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InventoryService/src/main/java/com/ecommercial/shopping/inventoryservice/global/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InventoryService/src/main/java/com/ecommercial/shopping/inventoryservice/global/config/SwaggerConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InventoryService/src/main/java/com/ecommercial/shopping/inventoryservice/global/controller/BaseController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InventoryService/src/main/java/com/ecommercial/shopping/inventoryservice/global/database/DataSourceRoutingAspect.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InventoryService/src/main/java/com/ecommercial/shopping/inventoryservice/global/database/DbContextHolder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InventoryService/src/main/java/com/ecommercial/shopping/inventoryservice/global/database/ReadOnlyDataSourceCycle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InventoryService/src/main/java/com/ecommercial/shopping/inventoryservice/global/database/RoutingDataSource.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InventoryService/src/main/java/com/ecommercial/shopping/inventoryservice/global/dto/BaseResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InventoryService/src/main/java/com/ecommercial/shopping/inventoryservice/global/enums/DbType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InventoryService/src/main/java/com/ecommercial/shopping/inventoryservice/global/error/InventoryError.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InventoryService/src/main/java/com/ecommercial/shopping/inventoryservice/global/exception/MyException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InventoryService/src/main/java/com/ecommercial/shopping/inventoryservice/inventory/application/InventoryKafkaListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InventoryService/src/main/java/com/ecommercial/shopping/inventoryservice/inventory/application/InventoryService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InventoryService/src/main/java/com/ecommercial/shopping/inventoryservice/inventory/application/InventoryServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InventoryService/src/main/java/com/ecommercial/shopping/inventoryservice/inventory/application/dto/ReservedInventoryQuantityCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InventoryService/src/main/java/com/ecommercial/shopping/inventoryservice/inventory/application/dto/UpdateInventoryQuantityCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InventoryService/src/main/java/com/ecommercial/shopping/inventoryservice/inventory/application/dto/kafka/TestOb.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InventoryService/src/main/java/com/ecommercial/shopping/inventoryservice/inventory/domain/InventoryQueryRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InventoryService/src/main/java/com/ecommercial/shopping/inventoryservice/inventory/domain/InventoryRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InventoryService/src/main/java/com/ecommercial/shopping/inventoryservice/inventory/domain/entity/Inventory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InventoryService/src/main/java/com/ecommercial/shopping/inventoryservice/inventory/domain/entity/ReservedInventoryLog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InventoryService/src/main/java/com/ecommercial/shopping/inventoryservice/inventory/domain/vo/ProductIdAndAmount.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InventoryService/src/main/java/com/ecommercial/shopping/inventoryservice/inventory/infrastructure/InventoryJpaRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InventoryService/src/main/java/com/ecommercial/shopping/inventoryservice/inventory/infrastructure/InventoryQueryRepositoryImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InventoryService/src/main/java/com/ecommercial/shopping/inventoryservice/inventory/presentation/InventoryController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InventoryService/src/main/java/com/ecommercial/shopping/inventoryservice/inventory/presentation/dto/ReservedInventoryQuantityBody.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../InventoryService/src/main/java/com/ecommercial/shopping/inventoryservice/inventory/presentation/dto/UpdateInventoryQuantityBody.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../OrderService/src/main/kotlin/com/ecommercial/shopping/orderservice/global/annotation/DisableSwaggerSecurity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../OrderService/src/main/kotlin/com/ecommercial/shopping/orderservice/global/config/DataSourceConfig.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../OrderService/src/main/kotlin/com/ecommercial/shopping/orderservice/global/config/DataSourceProperties.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../OrderService/src/main/kotlin/com/ecommercial/shopping/orderservice/global/config/JwtConfig.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../OrderService/src/main/kotlin/com/ecommercial/shopping/orderservice/global/config/RedisConfig.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../OrderService/src/main/kotlin/com/ecommercial/shopping/orderservice/global/config/RoutingDataSource.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../OrderService/src/main/kotlin/com/ecommercial/shopping/orderservice/global/config/SecurityConfig.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../OrderService/src/main/kotlin/com/ecommercial/shopping/orderservice/global/config/SwaggerConfig.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../OrderService/src/main/kotlin/com/ecommercial/shopping/orderservice/global/controller/BaseController.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../OrderService/src/main/kotlin/com/ecommercial/shopping/orderservice/global/database/ReadOnlyDataSourceCycle.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../OrderService/src/main/kotlin/com/ecommercial/shopping/orderservice/global/dto/BaseResponse.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../OrderService/src/main/kotlin/com/ecommercial/shopping/orderservice/global/error/JWTErrorEnum.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../OrderService/src/main/kotlin/com/ecommercial/shopping/orderservice/global/exception/ErrorException.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../OrderService/src/main/kotlin/com/ecommercial/shopping/orderservice/global/exception/MyException.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../OrderService/src/main/kotlin/com/ecommercial/shopping/orderservice/global/filter/JwtAuthenticationFilter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../OrderService/src/main/kotlin/com/ecommercial/shopping/orderservice/global/filter/JwtExceptionFilter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../OrderService/src/main/kotlin/com/ecommercial/shopping/orderservice/global/jwt/JwtProperties.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../OrderService/src/main/kotlin/com/ecommercial/shopping/orderservice/global/jwt/JwtProviders.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../OrderService/src/main/kotlin/com/ecommercial/shopping/orderservice/order/entity/Order.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../OrderService/src/main/kotlin/com/ecommercial/shopping/orderservice/order/entity/OrderItem.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../PaymentService/src/main/kotlin/com/ecommercial/shopping/paymentservice/payment/domain/entity/Payment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/global/config/DataSourceConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/global/config/DataSourceProperties.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/global/config/JpaConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/global/config/KafkaConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/global/config/QueryDslConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/global/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/global/config/SwaggerConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/global/controller/BaseController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/global/database/DataSourceRoutingAspect.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/global/database/DbContextHolder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/global/database/ReadOnlyDataSourceCycle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/global/database/RoutingDataSource.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/global/dto/AdminPrincipal.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/global/dto/BaseResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/global/dto/UserPrincipal.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/global/enums/AdminRole.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/global/enums/DbType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/global/error/ProductError.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/global/exception/MyException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/global/filter/JwtAuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/global/jwt/JwtValidation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/image/domain/Image.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/product/application/dto/RegisterProductCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/product/application/dto/ReserveProductListCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/product/application/listener/ProductInventoryListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/product/application/service/ProductService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/product/application/service/ProductServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/product/domain/ProductStatusHistory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/product/domain/repository/ProductQueryRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/product/domain/repository/ProductRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/product/domain/repository/ProductStatusHistoryRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/product/infrastructure/repository/ProductQueryRepositoryImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/product/infrastructure/repository/ProductRepositoryImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/product/infrastructure/repository/ProductStatusHistoryJpaRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/product/infrastructure/repository/ProductStatusHistoryRepositoryAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/product/presentation/ProductController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/product/presentation/UserProductController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/product/presentation/dto/RegisterProductBody.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ProductService/src/main/resources/application-swagger.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/global/annotation/DisableSwaggerSecurity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/global/config/DataSourceConfig.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/global/config/DataSourceProperties.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/global/config/JwtConfig.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/global/config/RedisConfig.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/global/config/RoutingDataSource.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/global/config/SecurityConfig.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/global/config/SwaggerConfig.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/global/controller/BaseController.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/global/database/ReadOnlyDataSourceCycle.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/global/dto/BaseResponse.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/global/enums/Grade.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/global/error/ErrorException.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/global/error/enums/UserException.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/global/exception/JWTErrorEnum.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/global/exception/MyException.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/global/filter/JwtAuthenticationFilter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/global/filter/JwtExceptionFilter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/global/jwt/JwtProperties.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/global/jwt/JwtProviders.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/global/redis/RedisProperties.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/user/application/UserService.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/user/application/UserServiceImpl.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/user/application/dto/request/LoginRequest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/user/application/dto/request/SignUpRequest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/user/application/dto/response/JwtTokenResponse.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/user/application/dto/response/UserInfoResponse.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/user/application/redis/UserRedisService.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/user/application/redis/UserRedisServiceImpl.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/user/domain/entity/User.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/user/domain/repository/UserQueryRepository.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/user/domain/repository/UserRepository.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/user/domain/vo/Address.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/user/infrastructure/UserJpaRepository.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/user/infrastructure/UserQueryRepositoryImpl.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/user/infrastructure/UserRepositoryAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/user/presentation/UserController.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/user/presentation/dto/LoginBody.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../UserService/src/main/kotlin/com/ecommercial/shopping/userservice/user/presentation/dto/SignUpBody.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ecommercial/shopping/model/NewInventoryUpdateMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ecommercial/shopping/model/UpdateProductCacheMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ecommercial/shopping/model/UpdateProductStatusMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AdminService/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../AdminService/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AdminService/src/main/java/com/ecommercial/shopping/adminservice/admin/application/AdminUserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AdminService/src/main/java/com/ecommercial/shopping/adminservice/admin/application/AdminUserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AdminService/src/main/java/com/ecommercial/shopping/adminservice/global/jwt/JwtProviders.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AdminService/src/main/java/com/ecommercial/shopping/adminservice/global/jwt/JwtProviders.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -208,22 +67,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.event-common [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.event-common [clean].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Build event-common.executor": "Run",
+    "Gradle.event-common [build].executor": "Run",
+    "Gradle.event-common [clean].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "feat/elastic-search",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Gradle.event-common [build]">
     <configuration name="event-common [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -288,6 +148,7 @@
       <workItem from="1747916220319" duration="2399000" />
       <workItem from="1749652559786" duration="4801000" />
       <workItem from="1750414410281" duration="2277000" />
+      <workItem from="1766025859940" duration="1644000" />
     </task>
     <servers />
   </component>
