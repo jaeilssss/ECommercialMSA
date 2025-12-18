@@ -41,8 +41,8 @@ public class AdminController {
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<BaseResponse<String>> logout(@RequestHeader("Authorization") String authorization) {
-        String accessToken = extractToken(authorization);
+    public ResponseEntity<BaseResponse<String>> logout(HttpServletRequest request) {
+        String accessToken = jwtProviders.resolveToken(request);
         adminUserService.logout(accessToken);
         return ResponseEntity.ok(new BaseResponse<>("OK", "로그아웃이 완료 됐습니다."));
     }
