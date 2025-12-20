@@ -61,6 +61,9 @@ dependencies {
     implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
     runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.2'
     runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.2'
+
+    //elastic search
+    implementation 'co.elastic.clients:elasticsearch-java:8.12.2'
 }
 
 def querydslSrcDir = 'src/main/generated'
