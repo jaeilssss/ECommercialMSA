@@ -10,7 +10,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
 @AllArgsConstructor
 @Builder
 @Getter
-@Document(indexName = "product_search")
+@Document(indexName = "product")
 public class ElasticSearchProduct {
     @Id
     private Long productId;

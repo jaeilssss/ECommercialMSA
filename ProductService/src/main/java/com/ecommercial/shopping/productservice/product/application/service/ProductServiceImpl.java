@@ -15,6 +15,7 @@ import com.ecommercial.shopping.productservice.product.domain.repository.Product
 import com.ecommercial.shopping.productservice.product.domain.repository.ProductRepository;
 import com.ecommercial.shopping.productservice.product.infrastructure.repository.ElasticSearchProductRepositoryImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.elasticsearch.core.SearchHit;
 import org.springframework.data.elasticsearch.core.SearchHits;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -75,26 +76,7 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public List<ElasticSearchProduct> search(String keyword) throws IOException {
-//        System.out.println(keyword);
-//        SearchResponse<ElasticSearchProduct> response =
-//                elasticsearchClient.search(s -> s
-//                                .index(INDEX_NAME)
-//                                .query(q -> q
-//                                        .multiMatch(m -> m
-//                                                .query(keyword)
-//                                                .fields(
-//                                                        "productName.autocomplete",
-//                                                        "companyName.autocomplete"
-//                                                )
-//                                        )
-//                                ),
-//                        ElasticSearchProduct.class
-//                );
-
-        System.out.println(keyword);
-        SearchHits<ElasticSearchProduct> searchHits = elasticSearchProductRepository.findByProductName(keyword);
-        System.out.println(searchHits.getTotalHits());
-
+        SearchHits<ElasticSearchProduct> searchHits = elasticSearchProductRepository.findByProductName(keyword, PageRequest.of(0, 10));
         return searchHits.getSearchHits().stream().map(SearchHit::getContent).toList();
     }
 
