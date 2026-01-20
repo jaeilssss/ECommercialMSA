@@ -1,0 +1,36 @@
+name: Deploy to EKS
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "admin-service/**"   # 헬름 차트가 있는 디렉토리 감지
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Infra Repo
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
+
+      - name: Update kubeconfig
+        run: |
+          aws eks update-kubeconfig --name ecommerce-cluster --region ap-northeast-2
+
+      - name: Install Helm
+        uses: azure/setup-helm@v4
+
+      - name: Helm Upgrade Admin Service
+        run: |
+          helm upgrade admin-service ./helm/admin-service \
+            --namespace production \
+            --install

@@ -1,21 +1,29 @@
 package com.ecommercial.shopping.productservice.product.application.service;
 
+import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.elasticsearch.core.search.Hit;
 import com.ecommercial.shopping.productservice.global.dto.AdminPrincipal;
 import com.ecommercial.shopping.productservice.global.enums.AdminRole;
 import com.ecommercial.shopping.productservice.global.error.ProductError;
 import com.ecommercial.shopping.productservice.global.exception.MyException;
-import com.ecommercial.shopping.productservice.product.application.dto.ProductInfoResponse;
-import com.ecommercial.shopping.productservice.product.application.dto.RegisterProductCommand;
-import com.ecommercial.shopping.productservice.product.application.dto.ReserveProductListCommand;
+import com.ecommercial.shopping.productservice.product.application.dto.*;
+import com.ecommercial.shopping.productservice.product.application.listener.dto.ElasticSearchProduct;
 import com.ecommercial.shopping.productservice.product.domain.Product;
+import com.ecommercial.shopping.productservice.product.domain.repository.ElasticSearchProductRepository;
 import com.ecommercial.shopping.productservice.product.domain.repository.ProductQueryRepository;
 import com.ecommercial.shopping.productservice.product.domain.repository.ProductRepository;
+import com.ecommercial.shopping.productservice.product.infrastructure.repository.ElasticSearchProductRepositoryImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.elasticsearch.core.SearchHit;
+import org.springframework.data.elasticsearch.core.SearchHits;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -23,7 +31,9 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService{
     private final ProductRepository productRepository;
     private final ProductQueryRepository productQueryRepository;
+    private final ElasticSearchProductRepository elasticSearchProductRepository;
 
+    private static final String INDEX_NAME = "product";
 
     @Override
     @Transactional
@@ -61,6 +71,31 @@ public class ProductServiceImpl implements ProductService{
         Product product = getProductById(productId);
 
         return ProductInfoResponse.fromEntity(product);
+    }
+
+    @Override
+    public List<ElasticSearchProduct> search(String keyword) throws IOException {
+//        System.out.println(keyword);
+//        SearchResponse<ElasticSearchProduct> response =
+//                elasticsearchClient.search(s -> s
+//                                .index(INDEX_NAME)
+//                                .query(q -> q
+//                                        .multiMatch(m -> m
+//                                                .query(keyword)
+//                                                .fields(
+//                                                        "productName.autocomplete",
+//                                                        "companyName.autocomplete"
+//                                                )
+//                                        )
+//                                ),
+//                        ElasticSearchProduct.class
+//                );
+
+        System.out.println(keyword);
+        SearchHits<ElasticSearchProduct> searchHits = elasticSearchProductRepository.findByProductName(keyword);
+        System.out.println(searchHits.getTotalHits());
+
+        return searchHits.getSearchHits().stream().map(SearchHit::getContent).toList();
     }
 
     public Product getProductById(Long productId) {

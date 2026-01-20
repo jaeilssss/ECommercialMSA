@@ -9,6 +9,7 @@ import io.swagger.v3.oas.models.security.SecurityScheme;
 import org.springdoc.core.customizers.OperationCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.method.HandlerMethod;
 
 import java.util.ArrayList;
@@ -22,7 +23,6 @@ public class SwaggerConfig {
     public OpenAPI customOpenAPI() {
         // JWT 인증이 필요한 기본 전역 보안 설정
         SecurityRequirement securityRequirement = new SecurityRequirement().addList("BearerAuth");
-
         return new OpenAPI()
                 .info(new Info()
                         .title("My API")

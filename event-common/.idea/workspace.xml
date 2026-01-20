@@ -7,6 +7,11 @@
     <list default="true" id="9d8a9c43-bb75-48ad-815d-ea1735153bb0" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProductService/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProductService/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../ProductService/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProductService/libs/event-common-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../ProductService/libs/event-common-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/product/application/listener/ProductInventoryListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ProductService/src/main/java/com/ecommercial/shopping/productservice/product/application/listener/ProductInventoryListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ProductService/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../ProductService/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,23 +72,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.Build event-common.executor": "Run",
-    "Gradle.event-common [build].executor": "Run",
-    "Gradle.event-common [clean].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "feat/elastic-search",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Build event-common.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.event-common [build].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.event-common [clean].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feat/elastic-search&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Gradle.event-common [build]">
     <configuration name="event-common [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -149,6 +154,7 @@
       <workItem from="1749652559786" duration="4801000" />
       <workItem from="1750414410281" duration="2277000" />
       <workItem from="1766025859940" duration="1644000" />
+      <workItem from="1766061580253" duration="1477000" />
     </task>
     <servers />
   </component>

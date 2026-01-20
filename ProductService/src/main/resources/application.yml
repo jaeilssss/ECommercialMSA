@@ -23,7 +23,7 @@ spring:
         spring.json.add.type.headers: true  # 타입 헤더 추가해서 수신자가 어떤 객체인지 알 수 있게 함
 
     consumer:
-      group-id: your-group-id
+      group-id: product-group-id
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
       properties:
@@ -54,5 +54,7 @@ jwt :
   secretKey: a2FyaW10b2thcmltdG9rYXJpbXRva2FyaW10b2thcmltdG9rYXJpbXRva2FyaW10b2thcmltdG9rYXJpbXRva2FyaW10b2thcmltdG9rYXJpbXRva2FyaW10b2thcmltdG9rYXJpbXRva2FyaW10b2thcmltdG9rYXJpbXRva2FyaW10b2thcmltdG9rYXJpbQ==
   expiration: 9600000
 
-
+elastic_search:
+  host: localhost
+  port: 9200
 
