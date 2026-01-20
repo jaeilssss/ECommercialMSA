@@ -4,16 +4,20 @@ import com.ecommercial.shopping.model.UpdateElasticSearchProductMessage;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
 
 @AllArgsConstructor
 @Builder
 @Getter
+@Document(indexName = "product_search")
 public class ElasticSearchProduct {
+    @Id
     private Long productId;
     private String productName;
     private String companyName;
     private String categoryName;
-    private int price;
+    private Integer price;
 
 
     public static ElasticSearchProduct of(UpdateElasticSearchProductMessage message) {
@@ -25,4 +29,5 @@ public class ElasticSearchProduct {
                 .price(message.getPrice())
                 .build();
     }
+
 }

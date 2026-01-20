@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ecommercial-kubernetes.iml" filepath="$PROJECT_DIR$/ecommercial-kubernetes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ProductService.iml" filepath="$PROJECT_DIR$/.idea/ProductService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ProductService.main.iml" filepath="$PROJECT_DIR$/.idea/modules/ProductService.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ProductService.test.iml" filepath="$PROJECT_DIR$/.idea/modules/ProductService.test.iml" />
     </modules>
   </component>
 </project>

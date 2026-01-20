@@ -1,17 +1,22 @@
 package com.ecommercial.shopping.productservice.product.presentation;
 
 import com.ecommercial.shopping.model.NewInventoryUpdateMessage;
+import com.ecommercial.shopping.model.UpdateElasticSearchProductMessage;
 import com.ecommercial.shopping.model.UpdateProductCacheMessage;
 import com.ecommercial.shopping.productservice.global.dto.BaseResponse;
 import com.ecommercial.shopping.productservice.global.jwt.JwtValidation;
 import com.ecommercial.shopping.productservice.product.application.dto.ProductInfoResponse;
 import com.ecommercial.shopping.productservice.product.application.dto.RegisterProductCommand;
+import com.ecommercial.shopping.productservice.product.application.listener.dto.ElasticSearchProduct;
 import com.ecommercial.shopping.productservice.product.application.service.ProductService;
 import com.ecommercial.shopping.productservice.product.presentation.dto.RegisterProductBody;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -34,6 +39,7 @@ public class ProductController {
                 .build();
         kafkaTemplate.send("new-inventoryQuantity-update", message);
         kafkaTemplate.send("new-orderservice-caching", createUpdateProductCacheMessage(response));
+        kafkaTemplate.send("update-product-elastic-search", createUpdateElasticSearchProductMessage(response));
         return ResponseEntity.ok(new BaseResponse<>("OK","상품 등록이 완료 됐습니다."));
     }
 
@@ -46,13 +52,20 @@ public class ProductController {
 
     @GetMapping("/get/product/info/{productId}")
     public ResponseEntity<BaseResponse<ProductInfoResponse>> getProductInfo(@PathVariable Long productId) {
-        System.out.println("------------------API 호출-----------------------");
-        System.out.println("------------------API 종료-----------------------");
         return ResponseEntity.ok(
                 new BaseResponse<>("OK", productService.getProduct(productId))
         );
-
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<BaseResponse<List<ElasticSearchProduct>>> search(
+            @RequestParam("keyword") String keyword
+    ) throws IOException {
+        return ResponseEntity.ok(
+                new BaseResponse<>("OK", productService.search(keyword))
+        );
+    }
+
 
     private UpdateProductCacheMessage createUpdateProductCacheMessage(RegisterProductCommand.Res res) {
         return UpdateProductCacheMessage.builder()
@@ -65,5 +78,16 @@ public class ProductController {
                 .companyId(res.getCompanyId())
                 .companyName(res.getCompanyName())
                 .build();
+    }
+
+    private UpdateElasticSearchProductMessage createUpdateElasticSearchProductMessage(RegisterProductCommand.Res res) {
+        return UpdateElasticSearchProductMessage.builder()
+                .productName(res.getProductName())
+                .productId(res.getId())
+                .price(res.getPrice())
+                .categoryName(res.getCategoryName())
+                .companyName(res.getCompanyName())
+                .build();
+
     }
 }

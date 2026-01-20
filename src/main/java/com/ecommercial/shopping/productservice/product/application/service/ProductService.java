@@ -1,8 +1,10 @@
 package com.ecommercial.shopping.productservice.product.application.service;
 
-import com.ecommercial.shopping.productservice.product.application.dto.ProductInfoResponse;
-import com.ecommercial.shopping.productservice.product.application.dto.RegisterProductCommand;
-import com.ecommercial.shopping.productservice.product.application.dto.ReserveProductListCommand;
+import com.ecommercial.shopping.productservice.product.application.dto.*;
+import com.ecommercial.shopping.productservice.product.application.listener.dto.ElasticSearchProduct;
+
+import java.io.IOException;
+import java.util.List;
 
 public interface ProductService {
 
@@ -11,4 +13,6 @@ public interface ProductService {
     public ReserveProductListCommand.Res reserveProductList(ReserveProductListCommand.Req request);
 
     public ProductInfoResponse getProduct(Long productId);
+
+    public List<ElasticSearchProduct> search(String keyword) throws IOException;
 }

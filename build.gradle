@@ -64,6 +64,7 @@ dependencies {
 
     //elastic search
     implementation 'co.elastic.clients:elasticsearch-java:8.12.2'
+    implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
 }
 
 def querydslSrcDir = 'src/main/generated'
