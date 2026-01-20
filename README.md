@@ -96,12 +96,12 @@ flowchart LR
 
 | 도메인       | 구현 항목                             | 비고                  |
 | --------- | --------------------------------- | ------------------- |
-| Admin     | 회사 등록 API, Admin 기본 API, 관리자 Role | 기본 관리 기능 완료         |
-| Product   | 카테고리 기능 구현                        | 상품/카테고리 도메인 시작      |
-| Order     | 주문 목록 조회 API                      | 조회 기능부터 단계적 확장      |
-| User      | AOP 기반 로깅 추가                      | 접근/행위 로깅 기반 마련      |
-| Inventory | 재고 모델/흐름 설계                       | 예약/차감/복구 구현 진행 예정   |
-| Payment   | (모듈 정리)                           | 결제/환불은 **로드맵**으로 이동 |
+| Admin     | 회사 등록 API, Admin 기본 API, 관리자 Role |      |
+| Product   | 카테고리 기능 구현                        |       |
+| Order     | 주문 목록 조회 API                      |      |
+| User      | AOP 기반 로깅 추가                      |       |
+| Inventory | 재고 모델/흐름 설계                       |    |
+| Payment   | (모듈 정리)                           |  |
 
 > 세부 구현은 각 서비스의 `controller`, `service`, `repository` 패키지에서 확인하세요.
 
