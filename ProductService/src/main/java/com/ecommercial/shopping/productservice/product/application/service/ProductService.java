@@ -14,5 +14,5 @@ public interface ProductService {
 
     public ProductInfoResponse getProduct(Long productId);
 
-    public List<ElasticSearchProduct> search(String keyword) throws IOException;
+    public List<ElasticSearchProduct> search(String keyword, int page) throws IOException;
 }

@@ -59,10 +59,11 @@ public class ProductController {
 
     @GetMapping("/search")
     public ResponseEntity<BaseResponse<List<ElasticSearchProduct>>> search(
-            @RequestParam("keyword") String keyword
+            @RequestParam("keyword") String keyword,
+            @RequestParam(value = "page", defaultValue = "1") int page
     ) throws IOException {
         return ResponseEntity.ok(
-                new BaseResponse<>("OK", productService.search(keyword))
+                new BaseResponse<>("OK", productService.search(keyword, page))
         );
     }
 

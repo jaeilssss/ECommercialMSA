@@ -1,8 +1,5 @@
 package com.ecommercial.shopping.productservice.product.application.service;
 
-import co.elastic.clients.elasticsearch.ElasticsearchClient;
-import co.elastic.clients.elasticsearch.core.SearchResponse;
-import co.elastic.clients.elasticsearch.core.search.Hit;
 import com.ecommercial.shopping.productservice.global.dto.AdminPrincipal;
 import com.ecommercial.shopping.productservice.global.enums.AdminRole;
 import com.ecommercial.shopping.productservice.global.error.ProductError;
@@ -13,8 +10,8 @@ import com.ecommercial.shopping.productservice.product.domain.Product;
 import com.ecommercial.shopping.productservice.product.domain.repository.ElasticSearchProductRepository;
 import com.ecommercial.shopping.productservice.product.domain.repository.ProductQueryRepository;
 import com.ecommercial.shopping.productservice.product.domain.repository.ProductRepository;
-import com.ecommercial.shopping.productservice.product.infrastructure.repository.ElasticSearchProductRepositoryImpl;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.BadRequestException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.elasticsearch.core.SearchHit;
 import org.springframework.data.elasticsearch.core.SearchHits;
@@ -24,7 +21,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -75,8 +71,11 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public List<ElasticSearchProduct> search(String keyword) throws IOException {
-        SearchHits<ElasticSearchProduct> searchHits = elasticSearchProductRepository.findByProductName(keyword, PageRequest.of(0, 10));
+    public List<ElasticSearchProduct> search(String keyword, int page) throws IOException {
+        if(page==0) {
+            throw new BadRequestException();
+        }
+        SearchHits<ElasticSearchProduct> searchHits = elasticSearchProductRepository.findByProductName(keyword, PageRequest.of(page-1, 10));
         return searchHits.getSearchHits().stream().map(SearchHit::getContent).toList();
     }
 
