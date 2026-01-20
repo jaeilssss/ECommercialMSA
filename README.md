@@ -117,7 +117,6 @@ flowchart LR
 ### 2) 멱등성 & 재시도 전략
 
 * **Idempotency-Key**(요청 헤더) 저장 후 중복 실행 차단 (중요 API 우선 적용)
-* 외부 연동/메시지 처리에 **지수 백오프 재시도** 전략 도입
 
 ### 3) Outbox & 비동기 이벤트
 
@@ -157,28 +156,28 @@ cd AdminService && ./gradlew bootRun
 
 ### OrderService
 
-* `GET /api/orders` : 주문 목록 조회 (구현)
-* `POST /api/orders` : 주문 생성 (확장 예정)
+* `GET /api/orders` : 주문 목록 조회 
+* `POST /api/orders` : 주문 생성
 
 ### ProductService
 
-* `GET /api/categories` : 카테고리 조회 (구현)
-* `POST /api/categories` : 카테고리 생성 (구현)
+* `GET /api/categories` : 카테고리 조회 
+* `POST /api/categories` : 카테고리 생성 
 
 ### AdminService
 
-* `POST /api/companies` : 회사 등록 (구현)
-* `GET /api/admin/roles` : 관리자 권한 조회 (구현)
+* `POST /api/companies` : 회사 등록 
+* `GET /api/admin/roles` : 관리자 권한 조회 
 
 ### UserService
 
-* `POST /api/users` : 회원 가입 (예정)
-* `POST /api/auth/login` : 로그인 (예정)
+* `POST /api/users` : 회원 가입 
+* `POST /api/auth/login` : 로그인 
 
 ### InventoryService
 
-* `POST /api/inventories/reserve` : 재고 예약 (예정)
-* `POST /api/inventories/release` : 재고 복구 (예정)
+* `POST /api/inventories/reserve` : 재고 예약
+* `POST /api/inventories/release` : 재고 복구
 
 ---
 
