@@ -14,6 +14,9 @@ import com.ecommercial.shopping.orderservice.order.domain.repository.OrderReposi
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.reactor.awaitSingle
 import org.springframework.core.ParameterizedTypeReference
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
@@ -30,34 +33,26 @@ class OrderServiceImpl(
     val webClient: WebClient
 ): OrderService {
     @Transactional
-    override fun order(request: OrderRequest) {
-        val orderItemDataList = ArrayList<ProductCacheData>()
-
-        for(orderItemId in request.itemList) {
-            var data = redisService.getProductInfo(orderItemId)
-
-            if (data == null) {
-                data = requestHttpProductInfo(orderItemId)?.data
-                if (data == null) {
-                    throw MyException(
+    override suspend fun order(request: OrderRequest): Unit = coroutineScope {
+        val deferredList = request.itemList.map { orderItemId ->
+            async {
+                redisService.getProductInfo(orderItemId)
+                    ?: requestHttpProductInfo(orderItemId)?.data
+                    ?: throw MyException(
                         ProductErrorEnum.NOT_FOUND_PRODUCT_ID.httpStatus,
                         ProductErrorEnum.NOT_FOUND_PRODUCT_ID.message
                     )
-                }
             }
-
-            orderItemDataList.add(data)
         }
+
+        val orderItemDataList = deferredList.map { it.await() }
 
         val totalPrice = orderItemDataList.sumOf { it.price }
 
-        val orderItemList = orderItemDataList.stream()
-            .map { it.toEntity() }
-            .toList()
+        val orderItemList = orderItemDataList.map { it.toEntity() }
 
         val order = request.toEntity(totalPrice, orderItemList)
-
-        orderItemList.stream().forEach { it.order = order }
+        orderItemList.forEach { it.order = order }
 
         orderRepository.save(order)
     }
@@ -80,7 +75,7 @@ class OrderServiceImpl(
     }
 
 
-    private fun requestHttpProductInfo(productId: Long): BaseResponse<ProductCacheData>? {
+    private suspend fun requestHttpProductInfo(productId: Long): BaseResponse<ProductCacheData>? {
         try {
             val result = webClient.get()
                     .uri("/get/product/info/$productId")
@@ -95,8 +90,8 @@ class OrderServiceImpl(
                         }
                     }
                     .bodyToMono(object : ParameterizedTypeReference<BaseResponse<ProductCacheData>>() {})
-                    .block()
-            return result
+
+            return result.awaitSingle()
         } catch (e: MyException) {
             throw e
         }

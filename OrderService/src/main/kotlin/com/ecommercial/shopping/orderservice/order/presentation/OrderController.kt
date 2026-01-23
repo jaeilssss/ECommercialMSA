@@ -19,7 +19,7 @@ class OrderController(
 ) {
 
     @PostMapping("/order")
-    fun createOrder(@RequestBody body: OrderBody, httpServletRequest: HttpServletRequest): ResponseEntity<BaseResponse<String>> {
+    suspend fun createOrder(@RequestBody body: OrderBody, httpServletRequest: HttpServletRequest): ResponseEntity<BaseResponse<String>> {
         val authHeader = httpServletRequest.getHeader("Authorization")
         val token = authHeader?.removePrefix("Bearer ")?.trim()
 

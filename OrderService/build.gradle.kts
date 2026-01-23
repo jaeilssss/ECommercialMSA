@@ -109,6 +109,8 @@ dependencies {
     implementation("org.redisson:redisson-spring-boot-starter:3.49.0")
 
     implementation(files("libs/event-common-1.0-SNAPSHOT.jar"))
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 }
 
 tasks.test {
