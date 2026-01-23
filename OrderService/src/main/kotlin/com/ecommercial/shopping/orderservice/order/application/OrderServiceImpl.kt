@@ -34,10 +34,17 @@ class OrderServiceImpl(
 ): OrderService {
     @Transactional
     override suspend fun order(request: OrderRequest): Unit = coroutineScope {
-        val deferredList = request.itemList.map { orderItemId ->
+        val notCachedData = ArrayList<Long>()
+        val orderItemDataList = ArrayList<ProductCacheData>()
+        for(orderItemId in request.itemList) {
+            val cached = redisService.getProductInfo(orderItemId)
+
+            if (cached==null) notCachedData.add(orderItemId)
+            else orderItemDataList.add(cached)
+        }
+        val deferredList = notCachedData.map { orderItemId ->
             async {
-                redisService.getProductInfo(orderItemId)
-                    ?: requestHttpProductInfo(orderItemId)?.data
+                requestHttpProductInfo(orderItemId)?.data
                     ?: throw MyException(
                         ProductErrorEnum.NOT_FOUND_PRODUCT_ID.httpStatus,
                         ProductErrorEnum.NOT_FOUND_PRODUCT_ID.message
@@ -45,7 +52,7 @@ class OrderServiceImpl(
             }
         }
 
-        val orderItemDataList = deferredList.map { it.await() }
+        deferredList.map { orderItemDataList.add(it.await()) }
 
         val totalPrice = orderItemDataList.sumOf { it.price }
 
