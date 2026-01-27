@@ -4,6 +4,7 @@
 
 <p align="left">
   <a href="#-tech-stack"><img alt="stack" src="https://img.shields.io/badge/Java-17+-orange?logo=java" /></a>
+  <a href="#-tech-stack"><img alt="stack" src="https://img.shields.io/badge/Kotlin-1.9+-7F52FF?logo=kotlin&logoColor=white" /></a>
   <a href="#-tech-stack"><img alt="stack" src="https://img.shields.io/badge/Spring%20Boot-3.x-6DB33F?logo=springboot&logoColor=white" /></a>
   <a href="#-tech-stack"><img alt="stack" src="https://img.shields.io/badge/Gradle-7+-02303A?logo=gradle" /></a>
   <a href="#-observability"><img alt="build" src="https://img.shields.io/badge/Test-JUnit5-blue" /></a>
