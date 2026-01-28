@@ -48,7 +48,7 @@ public class KafkaConfig {
 
         DefaultErrorHandler errorHandler = new DefaultErrorHandler(recoverer, backOff);
 
-        factory.setCommonErrorHandler(errorHandler); 
+        factory.setCommonErrorHandler(errorHandler);
 
         return factory;
     }
